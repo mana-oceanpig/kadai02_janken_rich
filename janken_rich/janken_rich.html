@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/janken.css">
+    <title>猫セラピスト</title>
+</head>
+
+<body>
+<div class="wrapper">
+<div class="top_page">
+        <div class="left">
+            <p class="top_message">健康を保つには、身体、心、精神の<br>バランスが重要です。<br> ねこセラピストに<br>オススメの習慣を聞いてみますか？</p>
+            <div class="button">
+            <button class="start">スタート</button>
+            <button class="reset">リセット</button>
+            </div>
+        </div>
+        <div class="right">
+            <h3>オススメの習慣</h3>
+            <table>
+                <tr><th aligh="center"><h4>朝</h4></th><td><div class="morning">習慣1</div></td></tr>
+                <tr><th align="center"><h4>昼</h4></th><td><div class="afternoon">習慣2</div></td></tr>
+                <tr><th aligh="center"><h4>夜</h4></th><td><div class="night">習慣3</div></td></tr>
+            </table>
+        </div>
+</div>
+
+    <div class="second_page">
+        <div class="left_2">
+            <h3>デイリークエスト</h3>
+            <table>
+                <tr><th><button class="done1">✔︎</button></th><th aligh="center"><h4>朝</h4></th><td><div class="morning_2">習慣1</div></td></tr>
+                <tr><th><button class="done2">✔︎</button></th><th align="center"><h4>昼</h4></th><td><div class="afternoon_2">習慣2</div></td></tr>
+                <tr><th><button class="done3">✔︎</button></th><th aligh="center"><h4>夜</h4></th><td><div class="night_2">習慣3</div></td></tr>
+            </table>
+        </div>
+        <div class="right_2">
+            <div class="neko_text">
+                今日はどんな1日になったにゃ？
+            </div>
+            <div class="neko_meter">
+                <div class="fish">
+                    <img class="sakana1" style="display: none;" src="/js-learning-sample-master/janken/img/sakana.png" alt="salana">
+                    <img class="sakana2" style="display: none;" src="/js-learning-sample-master/janken/img/sakana.png" alt="salana">
+                    <img class="sakana3" style="display: none;" src="/js-learning-sample-master/janken/img/sakana.png" alt="salana">
+                </div>
+                <img class="neko" src="/js-learning-sample-master/janken/img/neko.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="result">
+        <div class="message">
+            <h3 class="result" style="display: none;">あなたは今日これだけ体・心・精神を整えましたにゃ！おめでとう！</h3>
+        </div>
+        <div class="gauge"></div>
+    </div>
+    <footer>
+        <p id="footer_text">copyrights 2024 Neko Therapist All RIghts Reserved.</p>
+    </footer>
+</div>
+
+    <script>
+    //1.スタートを押した時
+    $(".start").on("click", function() {   
+    //2.COMの乱数(1~3)
+    const comr = Math.ceil(Math.random()*3);
+    //3.変数の指定
+    let view = "";
+    let view2 = "";
+    let view3 = "";
+
+    //4.習慣のパターン
+    if (comr == 1) {
+        view = '白湯を飲もう';
+        view2 = 'ボディスキャンをしよう';
+        view3 = '公園で森林浴をしよう';
+    }
+    if (comr == 2) {
+        view = 'ボディスキャンをしよう';
+        view2 = '白湯を飲もう';
+        view3 = '公園で森林浴をしよう';
+    }
+    if (comr == 3) {
+        view = '公園で森林浴をしよう';
+        view2 = '白湯を飲もう';
+        view3 = 'ボディスキャンをしよう';
+    }
+    //5.表示処理
+    $(".morning").html(view);
+    $(".morning_2").html(view);
+    $(".afternoon").html(view2);
+    $(".afternoon_2").html(view2);
+    $(".night").html(view3);
+    $(".night_2").html(view3);
+
+    });
+    //チェックボタン
+    $(".done1").on("click", function() {
+        let nekohome ="おつかれさま";
+        $(".sakana1").show();
+        $(".neko_text").html(nekohome);
+        let result ="33pt";
+        $(".gauge").html(result);
+        $(".sakana2").hide();
+        $(".sakana3").hide();
+        $(".result").show();
+
+    });
+    $(".done2").on("click", function() {
+        let nekohome ="よくやったにゃ";
+        $(".sakana1").show();
+        $(".sakana2").show();
+        $(".neko_text").html(nekohome);
+        let result ="66pt";
+        $(".gauge").html(result);
+        $(".sakana3").hide();
+        $(".result").show();
+    });
+    $(".done3").on("click", function() {
+        let nekohome ="すごい！全部できてえらいにゃ！";
+        $(".sakana1").show();
+        $(".sakana2").show();
+        $(".sakana3").show();
+        $(".neko_text").html(nekohome);
+        let result ="100pt";
+        $(".gauge").html(result);
+        $(".result").show();
+    });
+
+    // リセットボタン
+    $(".reset").click(function () {
+        location.reload();
+      });
+    
+
+    </script>
+
+</div>
+
+</body>
+
+</html>
